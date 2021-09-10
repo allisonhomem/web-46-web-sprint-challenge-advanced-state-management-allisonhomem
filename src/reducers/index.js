@@ -1,8 +1,43 @@
+import {SMURF_FETCH_START, SMURF_FETCH_SUCCESS, SMURF_FETCH_FAIL, ADD_SMURF, FORM_ERROR} from '../actions/index.js';
+
 
 export const initialState = {
+    smurfs: [],
+    loading: false,
+    fetchError: "",
+    formError: ""
 }
 
-const reducer = ()=>{
+const reducer = (state=initialState, action)=>{
+    switch(action.type) {
+        case SMURF_FETCH_START:
+            return {
+                ...state,
+                loading: true
+            }
+        case SMURF_FETCH_SUCCESS:
+            return {
+                ...state,
+                smurfs: [ ...state.smurfs, action.payload]
+            }
+        case SMURF_FETCH_FAIL:
+            return {
+                ...state,
+                fetchError: `uh-oh! Data was not fetched. Axios returned this error: ${action.payload}`
+            }
+        case ADD_SMURF:
+            return {
+                ...state,
+                smurfs: [ ...state.smurfs, action.payload]
+            }
+        case FORM_ERROR:
+            return {
+                ...state,
+                formError: "Name, position and nickname fields are required."
+            }
+        default:
+            return state;
+    }
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
