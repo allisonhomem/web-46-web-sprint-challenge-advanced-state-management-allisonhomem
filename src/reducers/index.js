@@ -18,11 +18,13 @@ const reducer = (state=initialState, action)=>{
         case SMURF_FETCH_SUCCESS:
             return {
                 ...state,
-                smurfs: [ ...state.smurfs, action.payload]
+                loading: false,
+                smurfs: action.payload
             }
         case SMURF_FETCH_FAIL:
             return {
                 ...state,
+                loading: false,
                 fetchError: `uh-oh! Data was not fetched. Axios returned this error: ${action.payload}`
             }
         case ADD_SMURF:

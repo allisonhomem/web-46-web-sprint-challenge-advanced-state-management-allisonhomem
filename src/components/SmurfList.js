@@ -7,12 +7,12 @@ const SmurfList = (props)=> {
     if (props.isLoading) {
         return <h1>Loading...</h1>;
     }
-
-    console.log(props.smurfs)
 ;
-    return(<div className="listContainer">
-        {props.smurfs.map(smurf => 
-        <Smurf smurf={smurf}/>)}
+    return(
+    <div className="listContainer">
+        {props.smurfs.map((smurf) => {
+            return <Smurf key={smurf.id} smurf={smurf}/>
+        })}
     </div>);
 }
 
