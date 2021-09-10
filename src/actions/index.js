@@ -15,7 +15,14 @@ export const fetchSmurfs = () => dispatch => {
             dispatch({type: SMURF_FETCH_FAIL, payload: err}));
 }
 
-export const addSmurf = (newSmurf) => {
+export const addSmurf = (name,position,nickname,description) => {
+    const newSmurf = {
+        id: Math.round(Math.random()*1000000000),
+        name: name,
+        position: position,
+        nickname: nickname,
+        description: description
+    }
     return ({type: ADD_SMURF, payload: newSmurf});
 }
 
